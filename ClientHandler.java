@@ -32,7 +32,7 @@ public class ClientHandler implements Runnable{
                     }
                 }
                 if(valid) {
-                    this.bufferedWriter.write("valid");
+                    this.bufferedWriter.write(possible_username);
                     this.bufferedWriter.newLine();
                     this.bufferedWriter.flush();
                     this.client_username = possible_username;

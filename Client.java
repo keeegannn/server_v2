@@ -7,7 +7,9 @@ public class Client extends Socket {
     private BufferedWriter bufferedWriter;
     private BufferedReader bufferedReader;
     private String username;
+    private ClientGUI clientGUI;
     public Client(String host, int port) throws IOException {
+        this.clientGUI = new ClientGUI(host);
         super(host,port);
         boolean retry = false;
         this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(this.getOutputStream()));
@@ -26,7 +28,7 @@ public class Client extends Socket {
             this.bufferedWriter.newLine();
             this.bufferedWriter.flush();
             String val = bufferedReader.readLine();
-            if (val.equals("valid")){
+            if (val.equals(username_attempt)){
                 this.username = username_attempt;
                 listenForMessage();
                 sendMessage();
